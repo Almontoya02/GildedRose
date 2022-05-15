@@ -11,11 +11,25 @@ export class GildedRose {
 
   updateQuality(){
     this.items.forEach(item=>{
-      item.name.includes("Aged Brie")?item=updateQualitytoAgedBrie(item):item;
-      item.name.includes("Backstage")?item=updateQualitytoBackstage(item):item;
-      item.name.includes("Sulfuras")?item=updateQualitytoSulfuras(item):item;
-      item.name.includes("Conjured")?item=updateQualitytoConjured(item):item;
-      item=updateQualityNormal(item);
+
+      switch (item.name) {
+        case "Aged Brie":
+          item=updateQualitytoAgedBrie(item);
+          break;
+        case "Backstage":
+          item=updateQualitytoBackstage(item);
+          break;
+        case "Sulfuras":
+          item=updateQualitytoSulfuras(item);
+          break;  
+        case "Conjured":
+          item=updateQualitytoConjured(item);
+          break;  
+        default:
+          item=updateQualityNormal(item)
+          break;
+      }
+     
     })
 
     return this.items

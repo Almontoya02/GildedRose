@@ -12,22 +12,20 @@ const decrementQuality=(quality:number,num:number=1):number=>{
 
 export const updateQualitytoBackstage=(item:Item):Item=>{
     console.log("Entró en Backstage")
-    let{sellIn,quality}=item
+    
+    item.sellIn<11 && 6<=item.sellIn?item.quality=incrementQuality(item.quality,2):item.quality;
+    item.sellIn<6 && 0<item.sellIn?item.quality=incrementQuality(item.quality,3):item.quality;
+    item.sellIn===0?item.quality=0:item.quality;
 
-    sellIn<11?quality=incrementQuality(quality,2):quality;
-    sellIn<6?quality=incrementQuality(quality,3):quality;
-    sellIn===0?quality=0:quality=incrementQuality(quality);
-
-    sellIn-=1
+    item.sellIn-=1
     return item;
 }
 
 export const updateQualitytoAgedBrie=(item:Item)=>{
     console.log("Entró en Aged Brie")
-    let{sellIn,quality}=item;
-    quality = incrementQuality(quality);
-    quality = sellIn < 0 ? incrementQuality(quality) : quality;
-    sellIn -= 1;
+    item.quality = incrementQuality(item.quality);
+    item.quality = item.sellIn < 0 ? incrementQuality(item.quality) : item.quality;
+    item.sellIn -= 1;
     return item
 }
 export const updateQualitytoSulfuras=(item:Item)=>{
@@ -37,10 +35,9 @@ export const updateQualitytoSulfuras=(item:Item)=>{
 
 export const updateQualitytoConjured=(item:Item)=>{
     console.log("Entró en Conjure")
-    let{sellIn,quality}=item;
-    quality=decrementQuality(quality,2);
-    sellIn<=0?quality = decrementQuality(quality,4):quality;
-    sellIn-=1;
+    item.quality=decrementQuality(item.quality,2);
+    item.sellIn<=0?item.quality = decrementQuality(item.quality,4):item.quality;
+    item.sellIn-=1;
     return item;
 }
 
